@@ -10,7 +10,7 @@ class CleanupHandler(FileSystemEventHandler):
         self.config = config
         self.auto_print_path = os.path.expanduser(config.get('auto_print_path', ''))
         self.monitored_paths = [os.path.expanduser(p) for p in config.get('monitored_paths', [])]
-        self.ttl_minutes = config.get('cleanup_interval_minutes', 15)
+        self.ttl_minutes = config.get('cleanup_interval_minutes', 1)
 
     def on_created(self, event):
         if event.is_directory:

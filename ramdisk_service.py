@@ -79,15 +79,17 @@ class RamDiskService:
         print(f"Removing Virtual Drive {self.drive_letter}:...")
         
         try:
-            cmd = ["subst", f"{self.drive_letter}:", "/d"]
-            result = subprocess.run(cmd, capture_output=True, text=True)
+            # Use shell=True for SUBST to work properly
+            cmd = f"subst {self.drive_letter}: /d"
+            result = subprocess.run(cmd, capture_output=True, text=True, shell=True)
             
             if result.returncode == 0:
-                print(f"Virtual Drive {self.drive_letter}: removed.")
+                print(f"Virtual Drive {self.drive_letter}: removed successfully.")
                 self.is_mounted = False
                 return True
             else:
                 print(f"Failed to remove Virtual Drive: {result.stderr}")
+                print(f"Return code: {result.returncode}")
                 return False
         except Exception as e:
             print(f"ERROR removing Virtual Drive: {e}")

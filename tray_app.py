@@ -111,9 +111,15 @@ class GenesisTrayApp:
             self.show_notification("Cleanup Failed", "Could not wipe RAM disk contents.")
 
     def on_exit(self, icon, item):
+        print("Exiting Genesis...")
         self.cleanup_service.stop()
         self.usb_handler.stop()
-        self.ramdisk_service.stop()
+        
+        # Wipe all files and remove the virtual drive
+        print("Wiping and removing Virtual Drive...")
+        self.ramdisk_service.wipe_contents()
+        self.ramdisk_service.remove_ramdisk()
+        
         icon.stop()
 
     def show_notification(self, title, message):
