@@ -25,14 +25,16 @@ class USBHandler:
         print("Monitoring for USB devices...")
         pythoncom.CoInitialize() # Required for WMI in thread
         c = wmi.WMI()
-        watcher = c.Win32_VolumeChangeEvent.watch_for("ConfigurationChanged")
+        # Watch for creation of new LogicalDisks (Drive letters appearing)
+        watcher = c.Win32_LogicalDisk.watch_for("creation")
         
         while self.running:
             try:
                 # Timed wait to check self.running occasionally
-                event = watcher(timeout_ms=2000) 
-                if event.EventType == 2: # Device Arrival
-                     print("USB Device Detected via WMI")
+                disk = watcher(timeout_ms=2000) 
+                # DriveType 2 = Removable
+                if disk.DriveType == 2:
+                     print(f"USB Device Detected via WMI: {disk.DeviceID}")
                      self.handle_usb_arrival()
             except wmi.x_wmi_timed_out:
                 pass
