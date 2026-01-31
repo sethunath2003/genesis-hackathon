@@ -1,7 +1,9 @@
 import threading
 import json
 import os
+import sys
 import time
+import winreg
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from PIL import Image, ImageDraw
@@ -17,6 +19,7 @@ class GenesisTrayApp:
         self.cleanup_service = CleanupService()
         self.usb_handler = USBHandler()
         self.icon = None
+        self.app_name = "GenesisTrayApp"
 
     def load_config(self):
         try:
@@ -36,6 +39,46 @@ class GenesisTrayApp:
         dc.rectangle((width // 4, height // 4, width * 3 // 4, height * 3 // 4), fill=color2)
         return image
 
+    def is_startup_enabled(self):
+        try:
+            key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Run", 0, winreg.KEY_READ)
+            winreg.QueryValueEx(key, self.app_name)
+            winreg.CloseKey(key)
+            return True
+        except FileNotFoundError:
+            return False
+        except Exception as e:
+            print(f"Error checking startup: {e}")
+            return False
+
+    def toggle_startup(self, icon, item):
+        current_state = self.is_startup_enabled()
+        key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
+        
+        try:
+            key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
+            if current_state:
+                # Remove
+                try:
+                    winreg.DeleteValue(key, self.app_name)
+                    self.show_notification("Startup Disabled", "Genesis will no longer start automatically.")
+                except FileNotFoundError:
+                    pass
+            else:
+                # Add
+                # Use pythonw if possible to avoid console, or just python
+                # Ensure we use absolute paths and quotes
+                exe = sys.executable
+                script = os.path.abspath(__file__)
+                # Command: "python_exe" "script_path"
+                cmd = f'"{exe}" "{script}"'
+                winreg.SetValueEx(key, self.app_name, 0, winreg.REG_SZ, cmd)
+                self.show_notification("Startup Enabled", "Genesis will now run correctly on boot.")
+            
+            winreg.CloseKey(key)
+        except Exception as e:
+            self.show_notification("Error", f"Failed to modify registry: {e}")
+
     def on_secure_import(self):
         # Hidden Tkinter root
         root = tk.Tk()
@@ -45,12 +88,9 @@ class GenesisTrayApp:
 
         if file_path:
             # Simulate USB import or just copy
-            # We use USBHandler's logic if possible, or just a direct safe copy
-            # Here we assume local or mounted USB
             drive = os.path.splitdrive(file_path)[0]
             filename = os.path.basename(file_path)
             
-            # Since we have the full path, we can just call secure_import with dirname
             success = self.usb_handler.secure_import(os.path.dirname(file_path), filename)
             
             if success:
@@ -59,10 +99,7 @@ class GenesisTrayApp:
                  self.show_notification("Import Failed", "File extension not allowed or error occurred.")
 
     def on_clean_now(self):
-        # Trigger cleanup manually (naive implementation: just log for now)
         print("Manual Cleanup Triggered")
-        # In a real app, we'd expose a method in CleanupService to sweep check all files
-        # For now, we rely on the TTL of existing files or user action
         self.show_notification("Cleanup Started", "System is cleaning up secure zones...")
 
     def on_exit(self, icon, item):
@@ -86,6 +123,7 @@ class GenesisTrayApp:
         menu = pystray.Menu(
             item('Secure Import...', self.on_secure_import),
             item('Clean Now', self.on_clean_now),
+            item('Run on Startup', self.toggle_startup, checked=lambda item: self.is_startup_enabled()),
             item('Exit', self.on_exit)
         )
         
