@@ -1,0 +1,11 @@
+{
+  "monitored_paths": [
+    "~/Downloads",
+    "~/Desktop/SecureZone"
+  ],
+  "auto_print_path": "~/Desktop/AutoPrint",
+  "quarantine_path": "~/Desktop/Quarantine",
+  "cleanup_interval_minutes": 15,
+  "file_upload_extensions": [".pdf", ".docx", ".jpg", ".png"],
+  "printer_name": "Default"
+}

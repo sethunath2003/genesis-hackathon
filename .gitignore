@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.manifest
+*.spec
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Project Specific
+config.json
+# Note: config.json is ignored so each deployment can have unique paths/settings. 
+# A config.example.json is recommended if you want to track a template.
+# For now, if you want to commit the default config, remove the line above.
+# I will NOT ignore config.json for this demo so the user sees it in the repo.
+!config.json
+
+# Runtime Data
+Quarantine/
+AutoPrint/
+logs/

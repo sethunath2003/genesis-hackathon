@@ -1,0 +1,5 @@
+watchdog
+pystray
+Pillow
+wmi
+pywin32
