@@ -18,7 +18,13 @@ from browser_config import BrowserConfig
 class GenesisTrayApp:
     def __init__(self):
         self.config = self.load_config()
+        
+        # Start RAM Disk FIRST (before other services that depend on Z:)
         self.ramdisk_service = RamDiskService()
+        print("Initializing Virtual Drive...")
+        if not self.ramdisk_service.start():
+            print("WARNING: Virtual Drive failed to start. Using fallback paths.")
+        
         self.browser_config = BrowserConfig()
         self.cleanup_service = CleanupService()
         self.usb_handler = USBHandler()
@@ -117,16 +123,11 @@ class GenesisTrayApp:
     def run(self):
         print("Genesis Tray App Starting...")
         
-        # Step 1: Start RAM Disk FIRST
-        print("Initializing RAM Disk...")
-        if not self.ramdisk_service.start():
-            print("WARNING: RAM Disk failed to start. Files may be saved to fallback location.")
-        
-        # Step 2: Configure Browsers (once)
+        # Configure Browsers (once)
         print("Configuring browser download paths...")
         self.browser_config.configure_all()
         
-        # Step 3: Start other services
+        # Start other services
         threading.Thread(target=self.cleanup_service.start, daemon=True).start()
         threading.Thread(target=self.usb_handler.start, daemon=True).start()
 
