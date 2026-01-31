@@ -12,10 +12,14 @@ from pystray import MenuItem as item
 
 from cleanup_service import CleanupService
 from usb_handler import USBHandler
+from ramdisk_service import RamDiskService
+from browser_config import BrowserConfig
 
 class GenesisTrayApp:
     def __init__(self):
         self.config = self.load_config()
+        self.ramdisk_service = RamDiskService()
+        self.browser_config = BrowserConfig()
         self.cleanup_service = CleanupService()
         self.usb_handler = USBHandler()
         self.icon = None
@@ -66,11 +70,8 @@ class GenesisTrayApp:
                     pass
             else:
                 # Add
-                # Use pythonw if possible to avoid console, or just python
-                # Ensure we use absolute paths and quotes
                 exe = sys.executable
                 script = os.path.abspath(__file__)
-                # Command: "python_exe" "script_path"
                 cmd = f'"{exe}" "{script}"'
                 winreg.SetValueEx(key, self.app_name, 0, winreg.REG_SZ, cmd)
                 self.show_notification("Startup Enabled", "Genesis will now run correctly on boot.")
@@ -80,14 +81,12 @@ class GenesisTrayApp:
             self.show_notification("Error", f"Failed to modify registry: {e}")
 
     def on_secure_import(self):
-        # Hidden Tkinter root
         root = tk.Tk()
         root.withdraw()
         file_path = filedialog.askopenfilename(title="Select File to Securely Import")
         root.destroy()
 
         if file_path:
-            # Simulate USB import or just copy
             drive = os.path.splitdrive(file_path)[0]
             filename = os.path.basename(file_path)
             
@@ -100,11 +99,15 @@ class GenesisTrayApp:
 
     def on_clean_now(self):
         print("Manual Cleanup Triggered")
-        self.show_notification("Cleanup Started", "System is cleaning up secure zones...")
+        if self.ramdisk_service.wipe_contents():
+            self.show_notification("Cleanup Complete", "All files in RAM disk have been wiped.")
+        else:
+            self.show_notification("Cleanup Failed", "Could not wipe RAM disk contents.")
 
     def on_exit(self, icon, item):
         self.cleanup_service.stop()
         self.usb_handler.stop()
+        self.ramdisk_service.stop()
         icon.stop()
 
     def show_notification(self, title, message):
@@ -114,7 +117,16 @@ class GenesisTrayApp:
     def run(self):
         print("Genesis Tray App Starting...")
         
-        # Start Services
+        # Step 1: Start RAM Disk FIRST
+        print("Initializing RAM Disk...")
+        if not self.ramdisk_service.start():
+            print("WARNING: RAM Disk failed to start. Files may be saved to fallback location.")
+        
+        # Step 2: Configure Browsers (once)
+        print("Configuring browser download paths...")
+        self.browser_config.configure_all()
+        
+        # Step 3: Start other services
         threading.Thread(target=self.cleanup_service.start, daemon=True).start()
         threading.Thread(target=self.usb_handler.start, daemon=True).start()
 
@@ -122,7 +134,7 @@ class GenesisTrayApp:
         image = self.create_image()
         menu = pystray.Menu(
             item('Secure Import...', self.on_secure_import),
-            item('Clean Now', self.on_clean_now),
+            item('Wipe Now', self.on_clean_now),
             item('Run on Startup', self.toggle_startup, checked=lambda item: self.is_startup_enabled()),
             item('Exit', self.on_exit)
         )

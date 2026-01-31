@@ -1,11 +1,13 @@
 {
+  "ramdisk_letter": "Z",
+  "ramdisk_size_mb": 512,
+  "target_browsers": ["chrome", "edge", "firefox"],
   "monitored_paths": [
-    "~/Downloads",
-    "~/Desktop/SecureZone"
+    "Z:/Downloads"
   ],
-  "auto_print_path": "~/Desktop/AutoPrint",
-  "quarantine_path": "~/Desktop/Quarantine",
+  "auto_print_path": "Z:/AutoPrint",
+  "quarantine_path": "Z:/Quarantine",
   "cleanup_interval_minutes": 15,
-  "file_upload_extensions": [".pdf", ".docx", ".jpg", ".png"],
+  "file_upload_extensions": [".pdf", ".docx", ".jpg", ".png", ".doc", ".xlsx", ".xls", ".ppt", ".pptx"],
   "printer_name": "Default"
 }
