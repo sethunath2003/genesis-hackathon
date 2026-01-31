@@ -6,9 +6,6 @@ import shutil
 import subprocess
 import wmi
 import pythoncom
-import tkinter as tk
-from tkinter import filedialog, messagebox
-from queue import Queue, Empty
 
 try:
     import win32print
@@ -21,16 +18,7 @@ class USBHandler:
     def __init__(self):
         self.config = self.load_config()
         self.running = True
-        self.quarantine_path = os.path.expanduser(self.config.get('quarantine_path', 'Z:/Quarantine'))
-        self.on_usb_detected_callback = None  # Callback to tray app
-        
-        # Thread-safety for USB detection
-        self._detected_drives = set()  # Track already-detected drives
-        self._detection_lock = threading.Lock()
-        self._dialog_lock = threading.Lock()  # Prevent concurrent dialogs
-        self._gui_queue = Queue()  # Queue for GUI operations
-        self._tk_root = None  # Persistent Tk root
-        
+        self.quarantine_path = os.path.expanduser(self.config.get('quarantine_path', '~/Desktop/Quarantine'))
         if not os.path.exists(self.quarantine_path):
             os.makedirs(self.quarantine_path)
 
@@ -41,39 +29,21 @@ class USBHandler:
         except FileNotFoundError:
             return {}
 
-    def set_usb_callback(self, callback):
-        """Set callback function to be called when USB is detected."""
-        self.on_usb_detected_callback = callback
-
-    def _get_tk_root(self):
-        """Get or create a Tk root window for dialogs."""
-        if self._tk_root is None or not self._tk_root.winfo_exists():
-            self._tk_root = tk.Tk()
-            self._tk_root.withdraw()
-        return self._tk_root
-
     def monitor_usb(self):
         print("Monitoring for USB devices...")
-        pythoncom.CoInitialize()
+        pythoncom.CoInitialize() # Required for WMI in thread
         c = wmi.WMI()
+        # Watch for creation of new LogicalDisks (Drive letters appearing)
         watcher = c.Win32_LogicalDisk.watch_for("creation")
         
         while self.running:
             try:
+                # Timed wait to check self.running occasionally
                 disk = watcher(timeout_ms=2000) 
                 # DriveType 2 = Removable
                 if disk.DriveType == 2:
-                    drive_id = disk.DeviceID
-                    
-                    # Debounce: Skip if already being handled
-                    with self._detection_lock:
-                        if drive_id in self._detected_drives:
-                            print(f"USB {drive_id} already being handled, skipping...")
-                            continue
-                        self._detected_drives.add(drive_id)
-                    
-                    print(f"USB Device Detected: {drive_id}")
-                    self.handle_usb_arrival(drive_id)
+                     print(f"USB Device Detected via WMI: {disk.DeviceID}")
+                     self.handle_usb_arrival()
             except wmi.x_wmi_timed_out:
                 pass
             except Exception as e:
@@ -315,16 +285,15 @@ class USBHandler:
 
 
     def get_removable_drives(self):
-        pythoncom.CoInitialize()
         c = wmi.WMI()
         drives = []
-        for disk in c.Win32_LogicalDisk(DriveType=2):
+        for disk in c.Win32_LogicalDisk(DriveType=2): # 2 = Removable
             drives.append(disk.DeviceID)
         return drives
 
-    def secure_import(self, source_dir, filename):
-        """Safely copies a file from USB to Quarantine."""
-        source = os.path.join(source_dir, filename)
+    def secure_import(self, drive_letter, filename):
+        """Safely copies a file from USB to Quarantine"""
+        source = os.path.join(drive_letter, filename)
         dest = os.path.join(self.quarantine_path, os.path.basename(filename))
         
         # Extension check
@@ -343,11 +312,12 @@ class USBHandler:
             return False
 
     def start(self):
-        self.thread = threading.Thread(target=self.monitor_usb, daemon=True)
+        self.thread = threading.Thread(target=self.monitor_usb)
         self.thread.start()
 
     def stop(self):
         self.running = False
+        # WMI watcher might block, needs forceful termination in prototype
         self.thread.join(timeout=1)
 
 if __name__ == "__main__":
@@ -358,4 +328,3 @@ if __name__ == "__main__":
             time.sleep(1)
     except KeyboardInterrupt:
         handler.stop()
-
