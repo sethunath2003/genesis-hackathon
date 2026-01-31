@@ -1,28 +1,28 @@
 {
-  "ramdisk_letter": "Z",
-  "ramdisk_size_mb": 512,
-  "target_browsers": [
-    "chrome",
-    "edge",
-    "firefox"
-  ],
-  "monitored_paths": [
-    "Z:/Downloads",
-    "Z:/Quarantine"
-  ],
-  "auto_print_path": "Z:/AutoPrint",
-  "quarantine_path": "Z:/Quarantine",
-  "cleanup_interval_minutes": 1,
-  "file_upload_extensions": [
-    ".pdf",
-    ".docx",
-    ".jpg",
-    ".png",
-    ".doc",
-    ".xlsx",
-    ".xls",
-    ".ppt",
-    ".pptx"
-  ],
-  "printer_name": "Default"
+    "ramdisk_letter": "Z",
+    "ramdisk_size_mb": 512,
+    "target_browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+    ],
+    "monitored_paths": [
+        "Z:/Downloads",
+        "Z:/Quarantine"
+    ],
+    "auto_print_path": "Z:/AutoPrint",
+    "quarantine_path": "Z:/Quarantine",
+    "cleanup_interval_minutes": 5,
+    "file_upload_extensions": [
+        ".pdf",
+        ".docx",
+        ".jpg",
+        ".png",
+        ".doc",
+        ".xlsx",
+        ".xls",
+        ".ppt",
+        ".pptx"
+    ],
+    "printer_name": "Default"
 }

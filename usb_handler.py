@@ -7,6 +7,10 @@ import subprocess
 import wmi
 import pythoncom
 
+
+import tkinter as tk
+from tkinter import messagebox, filedialog
+
 try:
     import win32print
     PRINT_MONITORING_AVAILABLE = True
@@ -18,6 +22,10 @@ class USBHandler:
     def __init__(self):
         self.config = self.load_config()
         self.running = True
+        self._dialog_lock = threading.Lock()
+        self._detection_lock = threading.Lock()
+        self._detected_drives = set()
+        
         # Initialize quarantine path with a safe fallback if target drive isn't available
         default = self.config.get('quarantine_path', '~/Desktop/Quarantine')
         self.quarantine_path = self._ensure_quarantine_path(default)
@@ -85,7 +93,7 @@ class USBHandler:
                 # DriveType 2 = Removable
                 if disk.DriveType == 2:
                      print(f"USB Device Detected via WMI: {disk.DeviceID}")
-                     self.handle_usb_arrival()
+                     self.handle_usb_arrival(disk.DeviceID)
             except wmi.x_wmi_timed_out:
                 pass
             except Exception as e:
