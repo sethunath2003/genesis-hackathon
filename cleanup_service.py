@@ -97,6 +97,19 @@ class CleanupService:
     def __init__(self):
         self.config = self.load_config()
         self.observer = Observer()
+        # Keep a reference to the handler so we can update TTL at runtime
+        self.handler = None
+
+    def update_ttl(self, minutes: int):
+        """Update the TTL used for scheduled cleanup at runtime."""
+        try:
+            if self.handler:
+                print(f"Updating Cleanup TTL to {minutes} minutes")
+                self.handler.ttl_minutes = minutes
+            else:
+                print("Cleanup handler not yet initialized; TTL will be picked up when service starts")
+        except Exception as e:
+            print(f"Error updating TTL: {e}")
 
     def load_config(self):
         try:
@@ -104,30 +117,70 @@ class CleanupService:
                 return json.load(f)
         except FileNotFoundError:
             return {}
+        except json.JSONDecodeError as e:
+            print(f"Error parsing config.json: {e}")
+            # Return empty config so service still starts with defaults
+            return {}
+
+    def _ensure_dir(self, path, fallback_name):
+        """Ensure a directory exists. If the drive isn't available or creation fails,
+        fall back to %LOCALAPPDATA%\GenesisSecure\<fallback_name> and return that path."""
+        try:
+            if not path:
+                return None
+
+            expanded = os.path.expanduser(path)
+            normalized = os.path.normpath(expanded)
+
+            # If a drive letter is present, ensure the drive root exists
+            drive, _ = os.path.splitdrive(normalized)
+            if drive:
+                drive_root = drive + os.sep
+                if not os.path.exists(drive_root):
+                    print(f"Drive {drive_root} not available for path {path}; falling back to local folder.")
+                    fallback = os.path.join(os.environ.get('LOCALAPPDATA', os.path.expanduser('~')), 'GenesisSecure', fallback_name)
+                    os.makedirs(fallback, exist_ok=True)
+                    return fallback
+
+            # Try to create the requested directory
+            os.makedirs(normalized, exist_ok=True)
+            return normalized
+        except Exception as e:
+            print(f"Failed to create directory {path}: {e}")
+            try:
+                fallback = os.path.join(os.environ.get('LOCALAPPDATA', os.path.expanduser('~')), 'GenesisSecure', fallback_name)
+                os.makedirs(fallback, exist_ok=True)
+                return fallback
+            except Exception as e2:
+                print(f"Failed to create fallback directory: {e2}")
+                return None
 
     def start(self):
         print("Cleanup Service Started")
-        handler = CleanupHandler(self.config)
+        # Store handler reference for runtime updates
+        self.handler = CleanupHandler(self.config)
+        handler = self.handler
         
         # Schedule Auto-Print Watcher
         auto_print_path = os.path.expanduser(self.config.get('auto_print_path', ''))
         if auto_print_path:
-             if not os.path.exists(auto_print_path):
-                 os.makedirs(auto_print_path)
-             self.observer.schedule(handler, path=auto_print_path, recursive=False)
-             print(f"Watching Auto-Print: {auto_print_path}")
+            safe_auto = self._ensure_dir(auto_print_path, 'AutoPrint')
+            if safe_auto:
+                self.observer.schedule(handler, path=safe_auto, recursive=False)
+                print(f"Watching Auto-Print: {safe_auto}")
+            else:
+                print(f"Skipping Auto-Print watcher; could not create path for {auto_print_path}")
 
         # Schedule Monitored Paths
         monitored_paths = self.config.get('monitored_paths', [])
         for path in monitored_paths:
             full_path = os.path.expanduser(path)
-            if not os.path.exists(full_path):
-                try:
-                    os.makedirs(full_path)
-                except Exception as e:
-                    print(f"Failed to create monitored path {full_path}: {e}")
-            self.observer.schedule(handler, path=full_path, recursive=False)
-            print(f"Watching: {full_path}")
+            safe_path = self._ensure_dir(full_path, os.path.basename(full_path) or 'monitored')
+            if safe_path:
+                self.observer.schedule(handler, path=safe_path, recursive=False)
+                print(f"Watching: {safe_path}")
+            else:
+                print(f"Skipping monitored path {full_path} - could not ensure directory")
 
         # ALSO watch RamDisk folders (if configured and available)
         ram_letter = self.config.get('ramdisk_letter', '')
@@ -136,16 +189,14 @@ class CleanupService:
             if os.path.exists(drive_root):
                 for sub in ('Downloads', 'AutoPrint', 'Quarantine'):
                     path = os.path.join(drive_root, sub)
-                    if not os.path.exists(path):
-                        try:
-                            os.makedirs(path)
-                        except Exception as e:
-                            print(f"Failed to ensure ramdisk folder {path}: {e}")
-                            continue
+                    safe_path = self._ensure_dir(path, f"RamDisk_{sub}")
+                    if not safe_path:
+                        print(f"Failed to ensure ramdisk folder {path}; skipping")
+                        continue
                     # Schedule watcher and add to monitored list so handler sees it
-                    self.observer.schedule(handler, path=path, recursive=False)
-                    handler.monitored_paths.append(path)
-                    print(f"Watching RamDisk: {path}")
+                    self.observer.schedule(handler, path=safe_path, recursive=False)
+                    handler.monitored_paths.append(safe_path)
+                    print(f"Watching RamDisk: {safe_path}")
             else:
                 print(f"RamDisk {drive_root} not available; skipping ramdisk watchers")
 

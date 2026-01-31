@@ -18,9 +18,51 @@ class USBHandler:
     def __init__(self):
         self.config = self.load_config()
         self.running = True
-        self.quarantine_path = os.path.expanduser(self.config.get('quarantine_path', '~/Desktop/Quarantine'))
-        if not os.path.exists(self.quarantine_path):
-            os.makedirs(self.quarantine_path)
+        # Initialize quarantine path with a safe fallback if target drive isn't available
+        default = self.config.get('quarantine_path', '~/Desktop/Quarantine')
+        self.quarantine_path = self._ensure_quarantine_path(default)
+
+    def _ensure_quarantine_path(self, candidate_path):
+        """Ensure the quarantine path exists. If the configured drive (e.g., Z:) is not available,
+        fall back to a local appdata folder. Returns a usable absolute path."""
+        import logging
+        from pathlib import Path
+
+        logger = logging.getLogger(__name__)
+
+        try:
+            # Expand user and normalize
+            p = os.path.expanduser(candidate_path)
+            p = os.path.normpath(p)
+
+            # If a drive letter is present, verify the drive root exists before attempting creation
+            drive, _ = os.path.splitdrive(p)
+            if drive:
+                drive_root = drive + os.sep
+                if not os.path.exists(drive_root):
+                    logger.warning("Configured quarantine drive %s not available; falling back to local folder.", drive_root)
+                    fallback = os.path.join(os.environ.get('LOCALAPPDATA', str(Path.home())), 'GenesisSecure', 'Quarantine')
+                    os.makedirs(fallback, exist_ok=True)
+                    return fallback
+
+            # Try to create the desired path (handles both drive and local paths)
+            try:
+                os.makedirs(p, exist_ok=True)
+                return p
+            except (FileNotFoundError, OSError) as e:
+                logger.warning("Could not create configured quarantine path %s (%s); using fallback.", p, e)
+                fallback = os.path.join(os.environ.get('LOCALAPPDATA', str(Path.home())), 'GenesisSecure', 'Quarantine')
+                os.makedirs(fallback, exist_ok=True)
+                return fallback
+
+        except Exception as e:
+            logger.exception("Unexpected error ensuring quarantine path. Using fallback.")
+            fallback = os.path.join(os.environ.get('LOCALAPPDATA', str(Path.home())), 'GenesisSecure', 'Quarantine')
+            try:
+                os.makedirs(fallback, exist_ok=True)
+            except Exception:
+                pass
+            return fallback
 
     def load_config(self):
         try:
