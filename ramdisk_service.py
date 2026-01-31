@@ -7,7 +7,7 @@ class RamDiskService:
     def __init__(self):
         self.config = self.load_config()
         self.drive_letter = self.config.get('ramdisk_letter', 'Z')
-        self.base_folder = os.path.join(os.environ.get('TEMP', 'C:\\Temp'), 'GenesisSecure')
+        self.size_mb = self.config.get('ramdisk_size_mb', 512)
         self.is_mounted = False
 
     def load_config(self):
@@ -22,41 +22,52 @@ class RamDiskService:
         return os.path.exists(f"{self.drive_letter}:\\")
 
     def create_ramdisk(self):
-        """Create a virtual drive using SUBST command (no external tools needed)."""
+        """Create a RAM disk using ImDisk."""
         if self.is_drive_available():
-            print(f"Virtual Drive {self.drive_letter}: already exists.")
+            print(f"RAM Disk {self.drive_letter}: already exists.")
             self.is_mounted = True
             self._ensure_folders()
             return True
 
-        print(f"Creating Virtual Drive {self.drive_letter}: using SUBST...")
+        print(f"Creating RAM Disk {self.drive_letter}: ({self.size_mb}MB)...")
         
         try:
-            # Create the base folder if it doesn't exist
-            if not os.path.exists(self.base_folder):
-                os.makedirs(self.base_folder)
-                print(f"Created base folder: {self.base_folder}")
-
-            # SUBST command to create a virtual drive letter
-            cmd = ["subst", f"{self.drive_letter}:", self.base_folder]
-            result = subprocess.run(cmd, capture_output=True, text=True)
+            # ImDisk command to create a RAM disk
+            # Format: imdisk -a -s <size>M -m <drive>: -p "/fs:ntfs /q /y"
+            cmd = [
+                "imdisk",
+                "-a",                           # Add virtual disk
+                "-s", f"{self.size_mb}M",       # Size in MB
+                "-m", f"{self.drive_letter}:",  # Mount point (drive letter)
+                "-p", "/fs:ntfs /q /y"          # Format as NTFS, quick, no prompt
+            ]
+            
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
             
             if result.returncode == 0:
-                print(f"Virtual Drive {self.drive_letter}: created successfully.")
-                print(f"  -> Points to: {self.base_folder}")
+                print(f"RAM Disk {self.drive_letter}: created successfully.")
                 self.is_mounted = True
+                # Give Windows a moment to recognize the drive
+                time.sleep(2)
                 self._ensure_folders()
                 return True
             else:
-                print(f"Failed to create Virtual Drive: {result.stderr}")
+                print(f"Failed to create RAM Disk: {result.stderr}")
                 return False
                 
+        except FileNotFoundError:
+            print("ERROR: ImDisk not found. Please install ImDisk Toolkit.")
+            print("Download from: http://www.ltr-data.se/opencode.html/")
+            return False
+        except subprocess.TimeoutExpired:
+            print("ERROR: ImDisk command timed out.")
+            return False
         except Exception as e:
-            print(f"ERROR creating Virtual Drive: {e}")
+            print(f"ERROR creating RAM Disk: {e}")
             return False
 
     def _ensure_folders(self):
-        """Create necessary folders on the virtual drive."""
+        """Create necessary folders on the RAM disk."""
         folders = [
             f"{self.drive_letter}:/Downloads",
             f"{self.drive_letter}:/AutoPrint",
@@ -71,37 +82,35 @@ class RamDiskService:
                     print(f"Failed to create {folder}: {e}")
 
     def remove_ramdisk(self):
-        """Remove the virtual drive."""
+        """Remove the RAM disk."""
         if not self.is_drive_available():
-            print(f"Virtual Drive {self.drive_letter}: not mounted.")
+            print(f"RAM Disk {self.drive_letter}: not mounted.")
             return True
 
-        print(f"Removing Virtual Drive {self.drive_letter}:...")
+        print(f"Removing RAM Disk {self.drive_letter}:...")
         
         try:
-            # Use shell=True for SUBST to work properly
-            cmd = f"subst {self.drive_letter}: /d"
-            result = subprocess.run(cmd, capture_output=True, text=True, shell=True)
+            cmd = ["imdisk", "-D", "-m", f"{self.drive_letter}:"]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
             
             if result.returncode == 0:
-                print(f"Virtual Drive {self.drive_letter}: removed successfully.")
+                print(f"RAM Disk {self.drive_letter}: removed.")
                 self.is_mounted = False
                 return True
             else:
-                print(f"Failed to remove Virtual Drive: {result.stderr}")
-                print(f"Return code: {result.returncode}")
+                print(f"Failed to remove RAM Disk: {result.stderr}")
                 return False
         except Exception as e:
-            print(f"ERROR removing Virtual Drive: {e}")
+            print(f"ERROR removing RAM Disk: {e}")
             return False
 
     def wipe_contents(self):
-        """Delete all files in the virtual drive without removing the drive itself."""
+        """Delete all files in the RAM disk without removing the disk itself."""
         if not self.is_drive_available():
-            print("Virtual Drive not available.")
+            print("RAM Disk not available.")
             return False
 
-        print("Wiping Virtual Drive contents...")
+        print("Wiping RAM Disk contents...")
         folders = [
             f"{self.drive_letter}:/Downloads",
             f"{self.drive_letter}:/AutoPrint",
@@ -122,23 +131,25 @@ class RamDiskService:
                     except Exception as e:
                         print(f"Failed to delete {item_path}: {e}")
         
-        print("Virtual Drive wiped.")
+        print("RAM Disk wiped.")
         return True
 
     def start(self):
-        """Start the virtual drive service."""
+        """Start the RAM disk service."""
         return self.create_ramdisk()
 
     def stop(self):
-        """Stop the virtual drive service."""
-        print("Virtual Drive Service stopped (drive remains mounted until removed).")
+        """Stop the RAM disk service (optionally remove the disk)."""
+        # We do NOT remove the disk on stop, as it would lose data
+        # The disk is volatile and will be cleared on reboot anyway
+        print("RAM Disk Service stopped (disk remains mounted until reboot).")
 
 
 if __name__ == "__main__":
     service = RamDiskService()
     if service.start():
-        print(f"Virtual Drive ready at {service.drive_letter}:\\")
+        print(f"RAM Disk ready at {service.drive_letter}:\\")
         input("Press Enter to wipe and exit...")
         service.wipe_contents()
     else:
-        print("Failed to start Virtual Drive service.")
+        print("Failed to start RAM Disk service.")

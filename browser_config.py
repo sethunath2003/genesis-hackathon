@@ -32,37 +32,42 @@ class BrowserConfig:
         return results
 
     def configure_chrome(self):
-        """Set Chrome download directory via registry (user preferences)."""
+        """Set Chrome download directory via registry policy."""
         try:
-            # Use user preferences path instead of Policies (no admin needed)
-            key_path = r"Software\Google\Chrome\Preferences"
+            key_path = r"Software\Policies\Google\Chrome"
             
-            key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
-            winreg.SetValueEx(key, "download.default_directory", 0, winreg.REG_SZ, self.download_path)
+            # Create the key if it doesn't exist
+            try:
+                key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
+            except Exception:
+                key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
+            
+            winreg.SetValueEx(key, "DownloadDirectory", 0, winreg.REG_SZ, self.download_path)
             winreg.CloseKey(key)
             
             print(f"Chrome: Download path set to {self.download_path}")
             return True
         except Exception as e:
             print(f"Chrome config failed: {e}")
-            print("  -> Please set Chrome download location manually to Z:\\Downloads")
             return False
 
     def configure_edge(self):
-        """Set Edge download directory via registry (user preferences)."""
+        """Set Edge download directory via registry policy."""
         try:
-            # Use user preferences path instead of Policies (no admin needed)
-            key_path = r"Software\Microsoft\Edge\Preferences"
+            key_path = r"Software\Policies\Microsoft\Edge"
             
-            key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
-            winreg.SetValueEx(key, "download.default_directory", 0, winreg.REG_SZ, self.download_path)
+            try:
+                key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
+            except Exception:
+                key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_SET_VALUE)
+            
+            winreg.SetValueEx(key, "DownloadDirectory", 0, winreg.REG_SZ, self.download_path)
             winreg.CloseKey(key)
             
             print(f"Edge: Download path set to {self.download_path}")
             return True
         except Exception as e:
             print(f"Edge config failed: {e}")
-            print("  -> Please set Edge download location manually to Z:\\Downloads")
             return False
 
     def configure_firefox(self):
