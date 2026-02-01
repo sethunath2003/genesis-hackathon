@@ -197,35 +197,41 @@ class GenesisTrayApp:
     def run(self):
         print("Genesis Tray App Starting...")
         
-        # Step 1: Start RAM Disk FIRST
-        print("Initializing RAM Disk...")
-        if not self.ramdisk_service.start():
-            print("WARNING: RAM Disk failed to start. Files may be saved to fallback location.")
-        
-        # Step 2: Configure Browsers (once)
-        print("Configuring browser download paths...")
-        self.browser_config.configure_all()
-        
-        # Step 3: Start other services
-        threading.Thread(target=self.cleanup_service.start, daemon=True).start()
-        threading.Thread(target=self.usb_handler.start, daemon=True).start()
+        # Step 1: Start Secure Storage (Local Folder)
+        print("Initializing Secure Storage...")
+        if self.ramdisk_service.start():
+            mount_path = self.ramdisk_service.mount_path
+            print(f"Secure Storage active at: {mount_path}")
 
-        # Start GUI in background (pass callback to update TTL at runtime)
-        self._gui_thread = threading.Thread(target=self._initialize_gui, daemon=True)
-        self._gui_thread.start()
+            # Step 2: Configure Browsers (once)
+            print("Configuring browser download paths...")
+            self.browser_config.configure_all(mount_path)
+            
+            # Step 3: Start other services
+            # Pass mount_path to cleanup service so it watches the right folder
+            threading.Thread(target=self.cleanup_service.start, args=(mount_path,), daemon=True).start()
+            threading.Thread(target=self.usb_handler.start, daemon=True).start()
 
-        # Setup Tray
-        image = self.create_image()
-        menu = pystray.Menu(
-            item('Secure Import...', self.on_secure_import),
-            item('Wipe Now', self.on_clean_now),
-            item('Settings', self._open_settings),
-            item('Run on Startup', self.toggle_startup, checked=lambda item: self.is_startup_enabled()),
-            item('Exit', self.on_exit)
-        )
-        
-        self.icon = pystray.Icon("Genesis", image, "Genesis Secure Env", menu)
-        self.icon.run()
+            # Start GUI in background
+            self._gui_thread = threading.Thread(target=self._initialize_gui, daemon=True)
+            self._gui_thread.start()
+
+            # Setup Tray
+            image = self.create_image()
+            menu = pystray.Menu(
+                item('Secure Import...', self.on_secure_import),
+                item('Wipe Now', self.on_clean_now),
+                item('Settings', self._open_settings),
+                item('Run on Startup', self.toggle_startup, checked=lambda item: self.is_startup_enabled()),
+                item('Exit', self.on_exit)
+            )
+            
+            self.icon = pystray.Icon("Genesis", image, "Genesis Secure Env", menu)
+            self.icon.run()
+        else:
+             print("CRITICAL: Failed to initialize storage. Exiting.")
+             sys.exit(1)
+
 
 if __name__ == "__main__":
     app = GenesisTrayApp()

@@ -155,7 +155,7 @@ class CleanupService:
                 print(f"Failed to create fallback directory: {e2}")
                 return None
 
-    def start(self):
+    def start(self, ramdisk_mount_path=None):
         print("Cleanup Service Started")
         # Store handler reference for runtime updates
         self.handler = CleanupHandler(self.config)
@@ -183,22 +183,32 @@ class CleanupService:
                 print(f"Skipping monitored path {full_path} - could not ensure directory")
 
         # ALSO watch RamDisk folders (if configured and available)
-        ram_letter = self.config.get('ramdisk_letter', '')
-        if ram_letter:
-            drive_root = f"{ram_letter}:/"
-            if os.path.exists(drive_root):
-                for sub in ('Downloads', 'AutoPrint', 'Quarantine'):
-                    path = os.path.join(drive_root, sub)
-                    safe_path = self._ensure_dir(path, f"RamDisk_{sub}")
-                    if not safe_path:
-                        print(f"Failed to ensure ramdisk folder {path}; skipping")
-                        continue
-                    # Schedule watcher and add to monitored list so handler sees it
+        # Use provided mount path or fallback to config
+        drive_root = None
+        if ramdisk_mount_path:
+             drive_root = ramdisk_mount_path
+        else:
+            ram_letter = self.config.get('ramdisk_letter', '')
+            if ram_letter:
+                drive_root = f"{ram_letter}:/"
+
+        if drive_root and os.path.exists(drive_root):
+            for sub in ('Downloads', 'AutoPrint', 'Quarantine'):
+                path = os.path.join(drive_root, sub)
+                safe_path = self._ensure_dir(path, f"RamDisk_{sub}")
+                if not safe_path:
+                    print(f"Failed to ensure ramdisk folder {path}; skipping")
+                    continue
+                # Schedule watcher and add to monitored list so handler sees it
+                try:
                     self.observer.schedule(handler, path=safe_path, recursive=False)
                     handler.monitored_paths.append(safe_path)
                     print(f"Watching RamDisk: {safe_path}")
-            else:
-                print(f"RamDisk {drive_root} not available; skipping ramdisk watchers")
+                except Exception as e:
+                    print(f"Error watching {safe_path}: {e}")
+        else:
+             if drive_root:
+                 print(f"RamDisk root {drive_root} not available; skipping ramdisk watchers")
 
         self.observer.start()
         try:
@@ -206,6 +216,10 @@ class CleanupService:
                 time.sleep(1)
         except KeyboardInterrupt:
             self.stop()
+        except Exception as e:
+            print(f"CleanupService error: {e}")
+            self.stop()
+
 
     def stop(self):
         self.observer.stop()

@@ -1,18 +1,15 @@
 {
-    "ramdisk_letter": "Z",
+    "ramdisk_letter": "",
     "ramdisk_size_mb": 512,
     "target_browsers": [
         "chrome",
         "edge",
         "firefox"
     ],
-    "monitored_paths": [
-        "Z:/Downloads",
-        "Z:/Quarantine"
-    ],
-    "auto_print_path": "Z:/AutoPrint",
-    "quarantine_path": "Z:/Quarantine",
-    "cleanup_interval_minutes": 5,
+    "monitored_paths": [],
+    "auto_print_path": "~/AppData/Local/GenesisSecure/SessionStorage/AutoPrint",
+    "quarantine_path": "~/AppData/Local/GenesisSecure/SessionStorage/Quarantine",
+    "cleanup_interval_minutes": 1,
     "file_upload_extensions": [
         ".pdf",
         ".docx",
