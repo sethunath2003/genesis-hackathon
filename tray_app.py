@@ -23,7 +23,8 @@ from cleanup_service import CleanupService
 from usb_handler import USBHandler
 from ramdisk_service import RamDiskService
 from browser_config import BrowserConfig
-from interface import GenesisDashboard
+#from interface import GenesisDashboard
+from genesis_monitor import GenesisLiveMonitor as GenesisDashboard
 
 class GenesisTrayApp:
     def __init__(self):
@@ -144,9 +145,12 @@ class GenesisTrayApp:
 
     def _initialize_gui(self):
         try:
-            # Create GUI with callback
+            # Create GUI with callback and pass print monitor reference
             logger.debug("Initializing Settings GUI...")
-            self.gui = GenesisDashboard(on_save_callback=self._on_settings_saved)
+            self.gui = GenesisDashboard(
+                on_save_callback=self._on_settings_saved,
+                print_monitor=self.cleanup_service.print_monitor
+            )
             self.gui.withdraw()
             logger.info("Settings GUI initialized")
             self.gui.mainloop()

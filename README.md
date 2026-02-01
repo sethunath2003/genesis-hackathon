@@ -33,6 +33,7 @@ Edit `config.json` to customize:
 
 ## Usage
 
+### Manual Start
 Start the application:
 ```bash
 python tray_app.py
@@ -41,6 +42,25 @@ python tray_app.py
 - **System Tray**: Right-click the Genesis icon to "Secure Import" or "Clean Now".
 - **USB**: Insert a drive, and you will be prompted (or use the menu) to import specific files safely.
 - **Printing**: Drop files into the `AutoPrint` folder on your desktop.
+
+### Auto-Start on Windows Boot
+To make Genesis launch automatically in the background on every Windows startup:
+
+1. **Open Command Prompt as Administrator** (right-click → "Run as administrator")
+2. **Navigate to the Genesis folder**:
+   ```powershell
+   cd C:\project\genesis-hackathon
+   ```
+3. **Run the setup script**:
+   ```bash
+   python setup_startup.py
+   ```
+4. **Restart your computer** — Genesis will launch silently in the background
+
+**To disable auto-start later**:
+```bash
+python setup_startup.py remove
+```
 
 ## Technologies
 

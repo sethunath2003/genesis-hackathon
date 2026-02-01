@@ -459,3 +459,474 @@
 2026-02-01 02:03:00,160 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
 2026-02-01 02:03:00,163 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
 2026-02-01 02:03:00,296 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 03:21:18,067 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 03:21:18,569 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 03:21:18,668 DEBUG [Thread-6 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 03:21:18,734 DEBUG [Thread-6 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 03:21:18,740 DEBUG [Thread-6 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 03:21:18,740 DEBUG [Thread-6 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 03:21:18,759 DEBUG [Thread-6 (setup_handler)] Importing CurImagePlugin
+2026-02-01 03:21:18,782 DEBUG [Thread-6 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 03:21:18,813 DEBUG [Thread-6 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 03:21:18,835 DEBUG [Thread-6 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 03:21:18,854 DEBUG [Thread-6 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 03:21:18,869 DEBUG [Thread-6 (setup_handler)] Importing FliImagePlugin
+2026-02-01 03:21:18,886 DEBUG [Thread-6 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 03:21:18,909 DEBUG [Thread-6 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 03:21:18,909 DEBUG [Thread-6 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 03:21:18,922 DEBUG [Thread-6 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 03:21:18,943 DEBUG [Thread-6 (setup_handler)] Importing GifImagePlugin
+2026-02-01 03:21:18,943 DEBUG [Thread-6 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 03:21:18,955 DEBUG [Thread-6 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 03:21:18,971 DEBUG [Thread-6 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 03:21:19,021 DEBUG [Thread-6 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 03:21:19,038 DEBUG [Thread-6 (setup_handler)] Importing ImImagePlugin
+2026-02-01 03:21:19,053 DEBUG [Thread-6 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 03:21:19,062 DEBUG [Thread-6 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 03:21:19,078 DEBUG [Thread-6 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 03:21:19,078 DEBUG [Thread-6 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 03:21:19,078 DEBUG [Thread-6 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 03:21:19,112 DEBUG [Thread-6 (setup_handler)] Importing MicImagePlugin
+2026-02-01 03:21:19,129 DEBUG [Thread-6 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 03:21:19,129 DEBUG [Thread-6 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 03:21:19,145 DEBUG [Thread-6 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 03:21:19,170 DEBUG [Thread-6 (setup_handler)] Importing MspImagePlugin
+2026-02-01 03:21:19,187 DEBUG [Thread-6 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 03:21:19,204 DEBUG [Thread-6 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 03:21:19,229 DEBUG [Thread-6 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 03:21:19,229 DEBUG [Thread-6 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 03:21:19,270 DEBUG [Thread-6 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 03:21:19,286 DEBUG [Thread-6 (setup_handler)] Importing PngImagePlugin
+2026-02-01 03:21:19,286 DEBUG [Thread-6 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 03:21:19,286 DEBUG [Thread-6 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 03:21:19,303 DEBUG [Thread-6 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 03:21:19,344 DEBUG [Thread-6 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 03:21:19,361 DEBUG [Thread-6 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 03:21:19,378 DEBUG [Thread-6 (setup_handler)] Importing SunImagePlugin
+2026-02-01 03:21:19,394 DEBUG [Thread-6 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 03:21:19,402 DEBUG [Thread-6 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 03:21:19,402 DEBUG [Thread-6 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 03:21:19,469 DEBUG [Thread-6 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 03:21:19,496 DEBUG [Thread-6 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 03:21:19,512 DEBUG [Thread-6 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 03:21:19,526 DEBUG [Thread-6 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 03:27:39,077 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 03:27:39,266 DEBUG [Thread-7 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 03:27:39,271 DEBUG [Thread-7 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 03:27:39,274 DEBUG [Thread-7 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 03:27:39,274 DEBUG [Thread-7 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 03:27:39,276 DEBUG [Thread-7 (setup_handler)] Importing CurImagePlugin
+2026-02-01 03:27:39,277 DEBUG [Thread-7 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 03:27:39,280 DEBUG [Thread-7 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 03:27:39,289 DEBUG [Thread-7 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 03:27:39,292 DEBUG [Thread-7 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 03:27:39,299 DEBUG [Thread-7 (setup_handler)] Importing FliImagePlugin
+2026-02-01 03:27:39,301 DEBUG [Thread-7 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 03:27:39,305 DEBUG [Thread-7 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 03:27:39,305 DEBUG [Thread-7 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 03:27:39,307 DEBUG [Thread-7 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 03:27:39,309 DEBUG [Thread-7 (setup_handler)] Importing GifImagePlugin
+2026-02-01 03:27:39,309 DEBUG [Thread-7 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 03:27:39,311 DEBUG [Thread-7 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 03:27:39,312 DEBUG [Thread-7 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 03:27:39,318 DEBUG [Thread-7 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 03:27:39,321 DEBUG [Thread-7 (setup_handler)] Importing ImImagePlugin
+2026-02-01 03:27:39,324 DEBUG [Thread-7 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 03:27:39,326 DEBUG [Thread-7 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 03:27:39,328 DEBUG [Thread-7 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 03:27:39,328 DEBUG [Thread-7 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 03:27:39,328 DEBUG [Thread-7 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 03:27:39,330 DEBUG [Thread-7 (setup_handler)] Importing MicImagePlugin
+2026-02-01 03:27:39,333 DEBUG [Thread-7 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 03:27:39,333 DEBUG [Thread-7 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 03:27:39,335 DEBUG [Thread-7 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 03:27:39,340 DEBUG [Thread-7 (setup_handler)] Importing MspImagePlugin
+2026-02-01 03:27:39,342 DEBUG [Thread-7 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 03:27:39,345 DEBUG [Thread-7 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 03:27:39,346 DEBUG [Thread-7 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 03:27:39,347 DEBUG [Thread-7 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 03:27:39,357 DEBUG [Thread-7 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 03:27:39,359 DEBUG [Thread-7 (setup_handler)] Importing PngImagePlugin
+2026-02-01 03:27:39,360 DEBUG [Thread-7 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 03:27:39,360 DEBUG [Thread-7 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 03:27:39,362 DEBUG [Thread-7 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 03:27:39,363 DEBUG [Thread-7 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 03:27:39,365 DEBUG [Thread-7 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 03:27:39,368 DEBUG [Thread-7 (setup_handler)] Importing SunImagePlugin
+2026-02-01 03:27:39,369 DEBUG [Thread-7 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 03:27:39,371 DEBUG [Thread-7 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 03:27:39,371 DEBUG [Thread-7 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 03:27:39,374 DEBUG [Thread-7 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 03:27:39,375 DEBUG [Thread-7 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 03:27:39,378 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 03:27:39,380 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 03:27:39,429 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 05:34:39,143 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 05:34:39,328 DEBUG [Thread-6 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 05:34:39,332 DEBUG [Thread-6 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 05:34:39,335 DEBUG [Thread-6 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 05:34:39,335 DEBUG [Thread-6 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 05:34:39,337 DEBUG [Thread-6 (setup_handler)] Importing CurImagePlugin
+2026-02-01 05:34:39,338 DEBUG [Thread-6 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 05:34:39,341 DEBUG [Thread-6 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 05:34:39,347 DEBUG [Thread-6 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 05:34:39,349 DEBUG [Thread-6 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 05:34:39,353 DEBUG [Thread-6 (setup_handler)] Importing FliImagePlugin
+2026-02-01 05:34:39,355 DEBUG [Thread-6 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 05:34:39,360 DEBUG [Thread-6 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 05:34:39,360 DEBUG [Thread-6 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 05:34:39,362 DEBUG [Thread-6 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 05:34:39,363 DEBUG [Thread-6 (setup_handler)] Importing GifImagePlugin
+2026-02-01 05:34:39,363 DEBUG [Thread-6 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 05:34:39,365 DEBUG [Thread-6 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 05:34:39,366 DEBUG [Thread-6 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 05:34:39,370 DEBUG [Thread-6 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 05:34:39,372 DEBUG [Thread-6 (setup_handler)] Importing ImImagePlugin
+2026-02-01 05:34:39,375 DEBUG [Thread-6 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 05:34:39,376 DEBUG [Thread-6 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 05:34:39,378 DEBUG [Thread-6 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 05:34:39,378 DEBUG [Thread-6 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 05:34:39,378 DEBUG [Thread-6 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 05:34:39,379 DEBUG [Thread-6 (setup_handler)] Importing MicImagePlugin
+2026-02-01 05:34:39,382 DEBUG [Thread-6 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 05:34:39,382 DEBUG [Thread-6 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 05:34:39,384 DEBUG [Thread-6 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 05:34:39,388 DEBUG [Thread-6 (setup_handler)] Importing MspImagePlugin
+2026-02-01 05:34:39,390 DEBUG [Thread-6 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 05:34:39,392 DEBUG [Thread-6 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 05:34:39,394 DEBUG [Thread-6 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 05:34:39,394 DEBUG [Thread-6 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 05:34:39,406 DEBUG [Thread-6 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 05:34:39,407 DEBUG [Thread-6 (setup_handler)] Importing PngImagePlugin
+2026-02-01 05:34:39,408 DEBUG [Thread-6 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 05:34:39,408 DEBUG [Thread-6 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 05:34:39,409 DEBUG [Thread-6 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 05:34:39,412 DEBUG [Thread-6 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 05:34:39,414 DEBUG [Thread-6 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 05:34:39,416 DEBUG [Thread-6 (setup_handler)] Importing SunImagePlugin
+2026-02-01 05:34:39,417 DEBUG [Thread-6 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 05:34:39,418 DEBUG [Thread-6 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 05:34:39,418 DEBUG [Thread-6 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 05:34:39,421 DEBUG [Thread-6 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 05:34:39,422 DEBUG [Thread-6 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 05:34:39,425 DEBUG [Thread-6 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 05:34:39,427 DEBUG [Thread-6 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 05:34:39,492 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 05:57:41,779 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 05:57:41,964 DEBUG [Thread-7 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 05:57:41,969 DEBUG [Thread-7 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 05:57:41,972 DEBUG [Thread-7 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 05:57:41,972 DEBUG [Thread-7 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 05:57:41,975 DEBUG [Thread-7 (setup_handler)] Importing CurImagePlugin
+2026-02-01 05:57:41,977 DEBUG [Thread-7 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 05:57:41,982 DEBUG [Thread-7 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 05:57:41,991 DEBUG [Thread-7 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 05:57:41,995 DEBUG [Thread-7 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 05:57:42,001 DEBUG [Thread-7 (setup_handler)] Importing FliImagePlugin
+2026-02-01 05:57:42,003 DEBUG [Thread-7 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 05:57:42,009 DEBUG [Thread-7 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 05:57:42,009 DEBUG [Thread-7 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 05:57:42,013 DEBUG [Thread-7 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 05:57:42,015 DEBUG [Thread-7 (setup_handler)] Importing GifImagePlugin
+2026-02-01 05:57:42,015 DEBUG [Thread-7 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 05:57:42,017 DEBUG [Thread-7 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 05:57:42,019 DEBUG [Thread-7 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 05:57:42,026 DEBUG [Thread-7 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 05:57:42,029 DEBUG [Thread-7 (setup_handler)] Importing ImImagePlugin
+2026-02-01 05:57:42,031 DEBUG [Thread-7 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 05:57:42,033 DEBUG [Thread-7 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 05:57:42,036 DEBUG [Thread-7 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 05:57:42,036 DEBUG [Thread-7 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 05:57:42,036 DEBUG [Thread-7 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 05:57:42,038 DEBUG [Thread-7 (setup_handler)] Importing MicImagePlugin
+2026-02-01 05:57:42,042 DEBUG [Thread-7 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 05:57:42,042 DEBUG [Thread-7 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 05:57:42,044 DEBUG [Thread-7 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 05:57:42,051 DEBUG [Thread-7 (setup_handler)] Importing MspImagePlugin
+2026-02-01 05:57:42,054 DEBUG [Thread-7 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 05:57:42,057 DEBUG [Thread-7 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 05:57:42,059 DEBUG [Thread-7 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 05:57:42,059 DEBUG [Thread-7 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 05:57:42,074 DEBUG [Thread-7 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 05:57:42,076 DEBUG [Thread-7 (setup_handler)] Importing PngImagePlugin
+2026-02-01 05:57:42,076 DEBUG [Thread-7 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 05:57:42,077 DEBUG [Thread-7 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 05:57:42,079 DEBUG [Thread-7 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 05:57:42,081 DEBUG [Thread-7 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 05:57:42,084 DEBUG [Thread-7 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 05:57:42,086 DEBUG [Thread-7 (setup_handler)] Importing SunImagePlugin
+2026-02-01 05:57:42,088 DEBUG [Thread-7 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 05:57:42,091 DEBUG [Thread-7 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 05:57:42,091 DEBUG [Thread-7 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 05:57:42,096 DEBUG [Thread-7 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 05:57:42,099 DEBUG [Thread-7 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 05:57:42,101 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 05:57:42,104 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 05:57:42,236 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 06:07:06,571 INFO [Thread-5 (_initialize_gui)] [SETTING SAVED] Termination time: 5 minutes.
+2026-02-01 06:07:06,571 INFO [Thread-5 (_initialize_gui)] [STATUS] config.json updated successfully.
+2026-02-01 06:07:06,572 INFO [Thread-5 (_initialize_gui)] [CALLBACK] Notified backend of new TTL: 5 minutes
+2026-02-01 06:11:23,412 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 06:11:23,579 DEBUG [Thread-7 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 06:11:23,583 DEBUG [Thread-7 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 06:11:23,586 DEBUG [Thread-7 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 06:11:23,587 DEBUG [Thread-7 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 06:11:23,588 DEBUG [Thread-7 (setup_handler)] Importing CurImagePlugin
+2026-02-01 06:11:23,591 DEBUG [Thread-7 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 06:11:23,594 DEBUG [Thread-7 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 06:11:23,602 DEBUG [Thread-7 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 06:11:23,604 DEBUG [Thread-7 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 06:11:23,611 DEBUG [Thread-7 (setup_handler)] Importing FliImagePlugin
+2026-02-01 06:11:23,613 DEBUG [Thread-7 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 06:11:23,616 DEBUG [Thread-7 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 06:11:23,616 DEBUG [Thread-7 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 06:11:23,617 DEBUG [Thread-7 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 06:11:23,619 DEBUG [Thread-7 (setup_handler)] Importing GifImagePlugin
+2026-02-01 06:11:23,619 DEBUG [Thread-7 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 06:11:23,620 DEBUG [Thread-7 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 06:11:23,622 DEBUG [Thread-7 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 06:11:23,627 DEBUG [Thread-7 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 06:11:23,630 DEBUG [Thread-7 (setup_handler)] Importing ImImagePlugin
+2026-02-01 06:11:23,632 DEBUG [Thread-7 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 06:11:23,632 DEBUG [Thread-7 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 06:11:23,633 DEBUG [Thread-7 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 06:11:23,633 DEBUG [Thread-7 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 06:11:23,633 DEBUG [Thread-7 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 06:11:23,635 DEBUG [Thread-7 (setup_handler)] Importing MicImagePlugin
+2026-02-01 06:11:23,638 DEBUG [Thread-7 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 06:11:23,638 DEBUG [Thread-7 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 06:11:23,640 DEBUG [Thread-7 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 06:11:23,646 DEBUG [Thread-7 (setup_handler)] Importing MspImagePlugin
+2026-02-01 06:11:23,647 DEBUG [Thread-7 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 06:11:23,649 DEBUG [Thread-7 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 06:11:23,650 DEBUG [Thread-7 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 06:11:23,650 DEBUG [Thread-7 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 06:11:23,663 DEBUG [Thread-7 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 06:11:23,665 DEBUG [Thread-7 (setup_handler)] Importing PngImagePlugin
+2026-02-01 06:11:23,665 DEBUG [Thread-7 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 06:11:23,665 DEBUG [Thread-7 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 06:11:23,666 DEBUG [Thread-7 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 06:11:23,667 DEBUG [Thread-7 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 06:11:23,668 DEBUG [Thread-7 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 06:11:23,670 DEBUG [Thread-7 (setup_handler)] Importing SunImagePlugin
+2026-02-01 06:11:23,671 DEBUG [Thread-7 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 06:11:23,673 DEBUG [Thread-7 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 06:11:23,673 DEBUG [Thread-7 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 06:11:23,676 DEBUG [Thread-7 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 06:11:23,678 DEBUG [Thread-7 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 06:11:23,681 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 06:11:23,684 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 06:11:23,759 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 06:11:41,588 INFO [Thread-5 (_initialize_gui)] [SETTING SAVED] Termination time: 4 minutes.
+2026-02-01 06:11:41,590 INFO [Thread-5 (_initialize_gui)] [STATUS] config.json updated successfully.
+2026-02-01 06:11:41,590 INFO [Thread-5 (_initialize_gui)] [CALLBACK] Notified backend of new TTL: 4 minutes
+2026-02-01 06:13:16,744 INFO [Thread-5 (_initialize_gui)] [SETTING SAVED] Termination time: 1 minutes.
+2026-02-01 06:13:16,746 INFO [Thread-5 (_initialize_gui)] [STATUS] config.json updated successfully.
+2026-02-01 06:13:16,747 INFO [Thread-5 (_initialize_gui)] [CALLBACK] Notified backend of new TTL: 1 minutes
+2026-02-01 06:59:54,074 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 06:59:54,429 DEBUG [Thread-7 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 06:59:54,436 DEBUG [Thread-7 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 06:59:54,439 DEBUG [Thread-7 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 06:59:54,440 DEBUG [Thread-7 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 06:59:54,443 DEBUG [Thread-7 (setup_handler)] Importing CurImagePlugin
+2026-02-01 06:59:54,446 DEBUG [Thread-7 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 06:59:54,452 DEBUG [Thread-7 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 06:59:54,459 DEBUG [Thread-7 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 06:59:54,462 DEBUG [Thread-7 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 06:59:54,467 DEBUG [Thread-7 (setup_handler)] Importing FliImagePlugin
+2026-02-01 06:59:54,470 DEBUG [Thread-7 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 06:59:54,474 DEBUG [Thread-7 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 06:59:54,474 DEBUG [Thread-7 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 06:59:54,477 DEBUG [Thread-7 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 06:59:54,479 DEBUG [Thread-7 (setup_handler)] Importing GifImagePlugin
+2026-02-01 06:59:54,479 DEBUG [Thread-7 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 06:59:54,481 DEBUG [Thread-7 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 06:59:54,483 DEBUG [Thread-7 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 06:59:54,489 DEBUG [Thread-7 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 06:59:54,492 DEBUG [Thread-7 (setup_handler)] Importing ImImagePlugin
+2026-02-01 06:59:54,496 DEBUG [Thread-7 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 06:59:54,498 DEBUG [Thread-7 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 06:59:54,500 DEBUG [Thread-7 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 06:59:54,500 DEBUG [Thread-7 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 06:59:54,501 DEBUG [Thread-7 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 06:59:54,502 DEBUG [Thread-7 (setup_handler)] Importing MicImagePlugin
+2026-02-01 06:59:54,505 DEBUG [Thread-7 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 06:59:54,505 DEBUG [Thread-7 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 06:59:54,507 DEBUG [Thread-7 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 06:59:54,513 DEBUG [Thread-7 (setup_handler)] Importing MspImagePlugin
+2026-02-01 06:59:54,515 DEBUG [Thread-7 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 06:59:54,518 DEBUG [Thread-7 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 06:59:54,521 DEBUG [Thread-7 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 06:59:54,521 DEBUG [Thread-7 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 06:59:54,537 DEBUG [Thread-7 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 06:59:54,539 DEBUG [Thread-7 (setup_handler)] Importing PngImagePlugin
+2026-02-01 06:59:54,540 DEBUG [Thread-7 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 06:59:54,540 DEBUG [Thread-7 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 06:59:54,542 DEBUG [Thread-7 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 06:59:54,544 DEBUG [Thread-7 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 06:59:54,546 DEBUG [Thread-7 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 06:59:54,548 DEBUG [Thread-7 (setup_handler)] Importing SunImagePlugin
+2026-02-01 06:59:54,551 DEBUG [Thread-7 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 06:59:54,553 DEBUG [Thread-7 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 06:59:54,553 DEBUG [Thread-7 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 06:59:54,558 DEBUG [Thread-7 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 06:59:54,560 DEBUG [Thread-7 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 06:59:54,562 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 06:59:54,564 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 06:59:54,567 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 07:01:50,968 INFO [Thread-5 (_initialize_gui)] [SETTING SAVED] Termination time: 5 minutes.
+2026-02-01 07:01:50,968 INFO [Thread-5 (_initialize_gui)] [STATUS] config.json updated successfully.
+2026-02-01 07:01:50,969 INFO [Thread-5 (_initialize_gui)] [CALLBACK] Notified backend of new TTL: 5 minutes
+2026-02-01 07:13:48,742 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 07:13:48,922 DEBUG [Thread-7 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 07:13:48,925 DEBUG [Thread-7 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 07:13:48,930 DEBUG [Thread-7 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 07:13:48,930 DEBUG [Thread-7 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 07:13:48,930 DEBUG [Thread-7 (setup_handler)] Importing CurImagePlugin
+2026-02-01 07:13:48,934 DEBUG [Thread-7 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 07:13:48,934 DEBUG [Thread-7 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 07:13:48,938 DEBUG [Thread-7 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 07:13:48,938 DEBUG [Thread-7 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 07:13:48,946 DEBUG [Thread-7 (setup_handler)] Importing FliImagePlugin
+2026-02-01 07:13:48,946 DEBUG [Thread-7 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 07:13:48,954 DEBUG [Thread-7 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 07:13:48,954 DEBUG [Thread-7 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 07:13:48,957 DEBUG [Thread-7 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 07:13:48,957 DEBUG [Thread-7 (setup_handler)] Importing GifImagePlugin
+2026-02-01 07:13:48,957 DEBUG [Thread-7 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 07:13:48,963 DEBUG [Thread-7 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 07:13:48,963 DEBUG [Thread-7 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 07:13:48,970 DEBUG [Thread-7 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 07:13:48,975 DEBUG [Thread-7 (setup_handler)] Importing ImImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 07:13:48,978 DEBUG [Thread-7 (setup_handler)] Importing MicImagePlugin
+2026-02-01 07:13:48,986 DEBUG [Thread-7 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 07:13:48,986 DEBUG [Thread-7 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 07:13:48,986 DEBUG [Thread-7 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 07:13:48,991 DEBUG [Thread-7 (setup_handler)] Importing MspImagePlugin
+2026-02-01 07:13:48,993 DEBUG [Thread-7 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 07:13:48,994 DEBUG [Thread-7 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 07:13:48,996 DEBUG [Thread-7 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 07:13:48,996 DEBUG [Thread-7 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 07:13:49,007 DEBUG [Thread-7 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 07:13:49,007 DEBUG [Thread-7 (setup_handler)] Importing PngImagePlugin
+2026-02-01 07:13:49,008 DEBUG [Thread-7 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 07:13:49,008 DEBUG [Thread-7 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 07:13:49,008 DEBUG [Thread-7 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 07:13:49,011 DEBUG [Thread-7 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 07:13:49,011 DEBUG [Thread-7 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 07:13:49,013 DEBUG [Thread-7 (setup_handler)] Importing SunImagePlugin
+2026-02-01 07:13:49,015 DEBUG [Thread-7 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 07:13:49,015 DEBUG [Thread-7 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 07:13:49,017 DEBUG [Thread-7 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 07:13:49,018 DEBUG [Thread-7 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 07:13:49,020 DEBUG [Thread-7 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 07:13:49,022 DEBUG [Thread-7 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 07:13:49,022 DEBUG [Thread-7 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 07:13:49,093 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 07:24:05,578 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 07:24:05,772 DEBUG [Thread-6 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 07:24:05,772 DEBUG [Thread-6 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 07:24:05,780 DEBUG [Thread-6 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 07:24:05,782 DEBUG [Thread-6 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 07:24:05,782 DEBUG [Thread-6 (setup_handler)] Importing CurImagePlugin
+2026-02-01 07:24:05,782 DEBUG [Thread-6 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 07:24:05,788 DEBUG [Thread-6 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 07:24:05,792 DEBUG [Thread-6 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 07:24:05,796 DEBUG [Thread-6 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 07:24:05,796 DEBUG [Thread-6 (setup_handler)] Importing FliImagePlugin
+2026-02-01 07:24:05,805 DEBUG [Thread-6 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 07:24:05,805 DEBUG [Thread-6 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 07:24:05,805 DEBUG [Thread-6 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 07:24:05,812 DEBUG [Thread-6 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 07:24:05,812 DEBUG [Thread-6 (setup_handler)] Importing GifImagePlugin
+2026-02-01 07:24:05,812 DEBUG [Thread-6 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 07:24:05,812 DEBUG [Thread-6 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 07:24:05,812 DEBUG [Thread-6 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 07:24:05,820 DEBUG [Thread-6 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 07:24:05,825 DEBUG [Thread-6 (setup_handler)] Importing ImImagePlugin
+2026-02-01 07:24:05,829 DEBUG [Thread-6 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 07:24:05,831 DEBUG [Thread-6 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 07:24:05,833 DEBUG [Thread-6 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 07:24:05,833 DEBUG [Thread-6 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 07:24:05,833 DEBUG [Thread-6 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 07:24:05,833 DEBUG [Thread-6 (setup_handler)] Importing MicImagePlugin
+2026-02-01 07:24:05,837 DEBUG [Thread-6 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 07:24:05,837 DEBUG [Thread-6 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 07:24:05,837 DEBUG [Thread-6 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 07:24:05,845 DEBUG [Thread-6 (setup_handler)] Importing MspImagePlugin
+2026-02-01 07:24:05,845 DEBUG [Thread-6 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 07:24:05,845 DEBUG [Thread-6 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 07:24:05,845 DEBUG [Thread-6 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 07:24:05,845 DEBUG [Thread-6 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 07:24:05,861 DEBUG [Thread-6 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 07:24:05,861 DEBUG [Thread-6 (setup_handler)] Importing PngImagePlugin
+2026-02-01 07:24:05,861 DEBUG [Thread-6 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 07:24:05,861 DEBUG [Thread-6 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 07:24:05,861 DEBUG [Thread-6 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 07:24:05,866 DEBUG [Thread-6 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 07:24:05,866 DEBUG [Thread-6 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 07:24:05,866 DEBUG [Thread-6 (setup_handler)] Importing SunImagePlugin
+2026-02-01 07:24:05,869 DEBUG [Thread-6 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 07:24:05,869 DEBUG [Thread-6 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 07:24:05,869 DEBUG [Thread-6 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 07:24:05,876 DEBUG [Thread-6 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 07:24:05,878 DEBUG [Thread-6 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 07:24:05,878 DEBUG [Thread-6 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 07:24:05,878 DEBUG [Thread-6 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 07:24:05,958 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized
+2026-02-01 07:33:01,065 DEBUG [Thread-5 (_initialize_gui)] Initializing Settings GUI...
+2026-02-01 07:33:01,274 DEBUG [Thread-6 (setup_handler)] Importing AvifImagePlugin
+2026-02-01 07:33:01,279 DEBUG [Thread-6 (setup_handler)] Importing BlpImagePlugin
+2026-02-01 07:33:01,282 DEBUG [Thread-6 (setup_handler)] Importing BmpImagePlugin
+2026-02-01 07:33:01,283 DEBUG [Thread-6 (setup_handler)] Importing BufrStubImagePlugin
+2026-02-01 07:33:01,284 DEBUG [Thread-6 (setup_handler)] Importing CurImagePlugin
+2026-02-01 07:33:01,286 DEBUG [Thread-6 (setup_handler)] Importing DcxImagePlugin
+2026-02-01 07:33:01,288 DEBUG [Thread-6 (setup_handler)] Importing DdsImagePlugin
+2026-02-01 07:33:01,297 DEBUG [Thread-6 (setup_handler)] Importing EpsImagePlugin
+2026-02-01 07:33:01,301 DEBUG [Thread-6 (setup_handler)] Importing FitsImagePlugin
+2026-02-01 07:33:01,305 DEBUG [Thread-6 (setup_handler)] Importing FliImagePlugin
+2026-02-01 07:33:01,307 DEBUG [Thread-6 (setup_handler)] Importing FpxImagePlugin
+2026-02-01 07:33:01,312 DEBUG [Thread-6 (setup_handler)] Image: failed to import FpxImagePlugin: No module named 'olefile'
+2026-02-01 07:33:01,313 DEBUG [Thread-6 (setup_handler)] Importing FtexImagePlugin
+2026-02-01 07:33:01,316 DEBUG [Thread-6 (setup_handler)] Importing GbrImagePlugin
+2026-02-01 07:33:01,318 DEBUG [Thread-6 (setup_handler)] Importing GifImagePlugin
+2026-02-01 07:33:01,318 DEBUG [Thread-6 (setup_handler)] Importing GribStubImagePlugin
+2026-02-01 07:33:01,319 DEBUG [Thread-6 (setup_handler)] Importing Hdf5StubImagePlugin
+2026-02-01 07:33:01,321 DEBUG [Thread-6 (setup_handler)] Importing IcnsImagePlugin
+2026-02-01 07:33:01,325 DEBUG [Thread-6 (setup_handler)] Importing IcoImagePlugin
+2026-02-01 07:33:01,326 DEBUG [Thread-6 (setup_handler)] Importing ImImagePlugin
+2026-02-01 07:33:01,329 DEBUG [Thread-6 (setup_handler)] Importing ImtImagePlugin
+2026-02-01 07:33:01,330 DEBUG [Thread-6 (setup_handler)] Importing IptcImagePlugin
+2026-02-01 07:33:01,332 DEBUG [Thread-6 (setup_handler)] Importing JpegImagePlugin
+2026-02-01 07:33:01,332 DEBUG [Thread-6 (setup_handler)] Importing Jpeg2KImagePlugin
+2026-02-01 07:33:01,332 DEBUG [Thread-6 (setup_handler)] Importing McIdasImagePlugin
+2026-02-01 07:33:01,333 DEBUG [Thread-6 (setup_handler)] Importing MicImagePlugin
+2026-02-01 07:33:01,337 DEBUG [Thread-6 (setup_handler)] Image: failed to import MicImagePlugin: No module named 'olefile'
+2026-02-01 07:33:01,337 DEBUG [Thread-6 (setup_handler)] Importing MpegImagePlugin
+2026-02-01 07:33:01,338 DEBUG [Thread-6 (setup_handler)] Importing MpoImagePlugin
+2026-02-01 07:33:01,345 DEBUG [Thread-6 (setup_handler)] Importing MspImagePlugin
+2026-02-01 07:33:01,347 DEBUG [Thread-6 (setup_handler)] Importing PalmImagePlugin
+2026-02-01 07:33:01,349 DEBUG [Thread-6 (setup_handler)] Importing PcdImagePlugin
+2026-02-01 07:33:01,350 DEBUG [Thread-6 (setup_handler)] Importing PcxImagePlugin
+2026-02-01 07:33:01,350 DEBUG [Thread-6 (setup_handler)] Importing PdfImagePlugin
+2026-02-01 07:33:01,366 DEBUG [Thread-6 (setup_handler)] Importing PixarImagePlugin
+2026-02-01 07:33:01,368 DEBUG [Thread-6 (setup_handler)] Importing PngImagePlugin
+2026-02-01 07:33:01,368 DEBUG [Thread-6 (setup_handler)] Importing PpmImagePlugin
+2026-02-01 07:33:01,368 DEBUG [Thread-6 (setup_handler)] Importing PsdImagePlugin
+2026-02-01 07:33:01,370 DEBUG [Thread-6 (setup_handler)] Importing QoiImagePlugin
+2026-02-01 07:33:01,374 DEBUG [Thread-6 (setup_handler)] Importing SgiImagePlugin
+2026-02-01 07:33:01,378 DEBUG [Thread-6 (setup_handler)] Importing SpiderImagePlugin
+2026-02-01 07:33:01,380 DEBUG [Thread-6 (setup_handler)] Importing SunImagePlugin
+2026-02-01 07:33:01,382 DEBUG [Thread-6 (setup_handler)] Importing TgaImagePlugin
+2026-02-01 07:33:01,383 DEBUG [Thread-6 (setup_handler)] Importing TiffImagePlugin
+2026-02-01 07:33:01,383 DEBUG [Thread-6 (setup_handler)] Importing WebPImagePlugin
+2026-02-01 07:33:01,388 DEBUG [Thread-6 (setup_handler)] Importing WmfImagePlugin
+2026-02-01 07:33:01,391 DEBUG [Thread-6 (setup_handler)] Importing XbmImagePlugin
+2026-02-01 07:33:01,394 DEBUG [Thread-6 (setup_handler)] Importing XpmImagePlugin
+2026-02-01 07:33:01,397 DEBUG [Thread-6 (setup_handler)] Importing XVThumbImagePlugin
+2026-02-01 07:33:01,542 INFO [Thread-5 (_initialize_gui)] Settings GUI initialized

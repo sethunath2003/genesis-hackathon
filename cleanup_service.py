@@ -4,13 +4,17 @@ import json
 import threading
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+from print_monitor import PrintJobMonitor
 
 class CleanupHandler(FileSystemEventHandler):
     def __init__(self, config):
         self.config = config
-        self.auto_print_path = os.path.expanduser(config.get('auto_print_path', ''))
-        self.monitored_paths = [os.path.expanduser(p) for p in config.get('monitored_paths', [])]
+        self.auto_print_path = os.path.normcase(os.path.abspath(os.path.expanduser(config.get('auto_print_path', ''))))
+        self.monitored_paths = [os.path.normcase(os.path.abspath(os.path.expanduser(p))) for p in config.get('monitored_paths', [])]
         self.ttl_minutes = config.get('cleanup_interval_minutes', 1)
+        
+        # Track scheduled timers by file path so we can cancel them
+        self.pending_timers = {}  # {file_path: Timer object}
 
     def on_created(self, event):
         if event.is_directory:
@@ -48,10 +52,11 @@ class CleanupHandler(FileSystemEventHandler):
             print(f"Error handling moved event: {e}")
 
     def _process_new_file(self, file_path):
-        # Check if file is in Auto-Print folder
+        # Check if file is in Auto-Print folder (shouldn't be initially, but check anyway)
         try:
-            if self.auto_print_path and os.path.normcase(os.path.abspath(os.path.dirname(file_path))) == os.path.normcase(os.path.abspath(self.auto_print_path)):
-                self.handle_auto_print(file_path)
+            normalized_file = os.path.normcase(os.path.abspath(file_path))
+            if self.auto_print_path and normalized_file.startswith(self.auto_print_path + os.sep):
+                print(f"File already in AutoPrint: {file_path}")
                 return
         except Exception:
             pass
@@ -59,7 +64,7 @@ class CleanupHandler(FileSystemEventHandler):
         # Normalize file path for reliable comparisons
         normalized_file = os.path.normcase(os.path.abspath(file_path))
 
-        # Check if file is in other monitored paths for TTL cleanup
+        # Check if file is in monitored paths (Downloads, Quarantine) for TTL cleanup
         for path in self.monitored_paths:
             try:
                 normalized_mon = os.path.normcase(os.path.abspath(path))
@@ -72,18 +77,45 @@ class CleanupHandler(FileSystemEventHandler):
                 break
 
     def handle_auto_print(self, file_path):
-        print(f"Auto-printing: {file_path}")
+        print(f"Auto-print triggered: {file_path}")
         try:
-            # Windows print command
-            os.startfile(file_path, "print")
-            # Wait a bit for spooling before delete (naive approach)
-            threading.Timer(60, self.secure_delete, args=[file_path]).start()
+            # Move file from C: (Downloads/Quarantine) to Z: (AutoPrint)
+            moved = self.print_monitor.move_file_to_autoprint(file_path)
+            
+            if moved:
+                # Print job monitor will handle deletion after print completion
+                print(f"File moved to AutoPrint on Z: drive; waiting for print completion...")
+            else:
+                # Fallback: print locally and delete after 60 seconds
+                print(f"Failed to move to Z: AutoPrint; printing locally")
+                os.startfile(file_path, "print")
+                threading.Timer(60, self.secure_delete, args=[file_path]).start()
         except Exception as e:
-            print(f"Error printing {file_path}: {e}")
+            print(f"Error in auto-print: {e}")
 
     def schedule_cleanup(self, file_path):
+        file_path = os.path.normcase(os.path.abspath(file_path))
         print(f"Scheduling cleanup for {file_path} in {self.ttl_minutes} minutes")
-        threading.Timer(self.ttl_minutes * 60, self.secure_delete, args=[file_path]).start()
+        
+        # Cancel any existing timer for this file
+        if file_path in self.pending_timers:
+            self.pending_timers[file_path].cancel()
+            print(f"Cancelled existing timer for {file_path}")
+        
+        # Schedule new timer
+        timer = threading.Timer(self.ttl_minutes * 60, self.secure_delete, args=[file_path])
+        self.pending_timers[file_path] = timer
+        timer.start()
+
+    def cancel_cleanup(self, file_path):
+        """Cancel a scheduled cleanup timer (called when print is initiated)."""
+        file_path = os.path.normcase(os.path.abspath(file_path))
+        if file_path in self.pending_timers:
+            self.pending_timers[file_path].cancel()
+            print(f"Cancelled cleanup timer for {file_path}")
+            del self.pending_timers[file_path]
+            return True
+        return False
 
     def secure_delete(self, file_path):
         try:
@@ -99,6 +131,9 @@ class CleanupService:
         self.observer = Observer()
         # Keep a reference to the handler so we can update TTL at runtime
         self.handler = None
+        # Initialize print monitor AFTER handler is created (see start())
+        self.print_monitor = None
+        self.print_monitor_thread = None
 
     def update_ttl(self, minutes: int):
         """Update the TTL used for scheduled cleanup at runtime."""
@@ -161,6 +196,9 @@ class CleanupService:
         self.handler = CleanupHandler(self.config)
         handler = self.handler
         
+        # NOW initialize print monitor with handler reference
+        self.print_monitor = PrintJobMonitor(self.config, cleanup_handler=self.handler)
+        
         # Schedule Auto-Print Watcher
         auto_print_path = os.path.expanduser(self.config.get('auto_print_path', ''))
         if auto_print_path:
@@ -201,6 +239,11 @@ class CleanupService:
                 print(f"RamDisk {drive_root} not available; skipping ramdisk watchers")
 
         self.observer.start()
+        
+        # Start the print job monitor
+        self.print_monitor_thread = self.print_monitor.start()
+        print("Print Job Monitor Started")
+        
         try:
             while True:
                 time.sleep(1)
@@ -210,6 +253,9 @@ class CleanupService:
     def stop(self):
         self.observer.stop()
         self.observer.join()
+        self.print_monitor.stop()
+        if self.print_monitor_thread:
+            self.print_monitor_thread.join(timeout=2)
         print("Cleanup Service Stopped")
 
 if __name__ == "__main__":
